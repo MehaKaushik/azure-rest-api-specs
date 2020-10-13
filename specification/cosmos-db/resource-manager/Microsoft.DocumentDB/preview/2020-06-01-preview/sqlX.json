@@ -59,7 +59,7 @@
           "200": {
             "description": "Successfully retrieved sql accelerator service resource.",
             "schema": {
-              "$ref": "#/definitions/ServiceResource"
+              "$ref": "#/definitions/ServiceGetResults"
             }
           },
           "default": {
@@ -96,7 +96,7 @@
             "$ref": "#/parameters/accountNameParameter"
           },
           {
-            "name": "sqlXCreateUpdateParameters",
+            "name": "properties",
             "in": "body",
             "required": true,
             "schema": {
@@ -109,7 +109,7 @@
           "200": {
             "description": "Creation of sql accelerator service will complete asynchronously.",
             "schema": {
-              "$ref": "#/definitions/ServiceResource"
+              "$ref": "#/definitions/ServiceGetResults"
             }
           },
           "default": {
@@ -168,92 +168,92 @@
       }
     }
   },
-    "definitions": {
-      "ServiceResourceCreateUpdateParameters": {
-        "description": "Parameters to create a service resource",
-        "type": "object",
+  "definitions": {
+    "ServiceResourceCreateUpdateParameters": {
+      "description": "Parameters to create a service resource",
+      "type": "object",
+      "properties": {
         "properties": {
-          "properties": {
-            "x-ms-client-flatten": true,
-            "description": "Properties to create and update an Azure Cosmos DB Service Resource.",
-            "$ref": "#/definitions/ServiceResource"
-          }
+          "description": "Properties to create and update an Azure Cosmos DB Service Resource.",
+          "$ref": "#/definitions/ServiceResource",
+          "x-ms-client-flatten": true
         }
-      },
-      "ServiceResource": {
-        "description": "A CosmosDB Service resource",
-        "type": "object",
+      }
+    },
+    "ServiceGetResults": {
+      "description": "An Azure Cosmos DB Cassandra table.",
+      "type": "object",
+      "properties": {
         "properties": {
-          "properties": {
-            "$ref": "#/definitions/ServiceResourceProperties",
-            "description": "Resource properties.",
-            "x-ms-client-flatten": true
-          }
+          "x-ms-client-flatten": true,
+          "description": "The properties of an Azure Cosmos DB Cassandra table",
+          "$ref": "#/definitions/ServiceResource"
         }
-      },
-      "ServiceResourceProperties": {
-        "description": "Properties of a service resource.",
-        "type": "object",
-        "properties": {
-          "serviceType": {
-            "description": "Specifies the type of Service.",
-            "type": "string",
-            "enum": [
-              "Sqlx"
-            ],
-            "readOnly": true
-          },
-          "status": {
-            "description": "Status of the CosmosDB Service.",
-            "type": "string"
-          },
-          "instanceSize": {
-            "description": "Size of the CosmosDB Service.",
-            "type": "string"
-          },
-          "instanceCount": {
-            "description": "Instance count of the CosmosDB Service.",
-            "type": "string"
-          },
-          "locations": {
-            "description": "Map of a location name to regional service resource.",
-            "type": "array",
-            "items": {
-              "$ref": "#/definitions/RegionalServiceResource"
-            }
-          }
-        }
-      },
-      "RegionalServiceResource": {
-        "description": "Properties of a regional service resource.",
-        "type": "object",
-        "properties": {
-          "name": {
-            "description": "The regional service resource name",
-            "type": "string"
-          },
-          "location": {
-            "description": "The location of regional service resource.",
-            "type": "string"
-          },
-          "status": {
-            "description": "The status of the regional service.",
-            "type": "string"
+      }
+    },
+    "ServiceResource": {
+      "description": "A CosmosDB Service resource",
+      "type": "object",
+      "properties": {
+        "serviceType": {
+          "description": "Specifies the type of Service.",
+          "type": "string",
+          "enum": [
+            "Sqlx"
+          ],
+          "readOnly": true
+        },
+        "status": {
+          "description": "Status of the CosmosDB Service.",
+          "type": "string"
+        },
+        "instanceSize": {
+          "description": "Size of the CosmosDB Service.",
+          "type": "string"
+        },
+        "instanceCount": {
+          "description": "Instance count of the CosmosDB Service.",
+          "type": "string"
+        },
+        "locations": {
+          "description": "Map of a location name to regional service resource.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RegionalServiceResource"
           }
         }
       }
     },
-    "parameters": {
-      "accountNameParameter": {
-        "name": "accountName",
-        "in": "path",
-        "required": true,
-        "type": "string",
-        "x-ms-parameter-location": "method",
-        "description": "Cosmos DB database account name.",
-        "minLength": 3,
-        "maxLength": 50,
-        "pattern": "^[a-z0-9]+(-[a-z0-9]+)*"
+    "RegionalServiceResource": {
+      "description": "Properties of a regional service resource.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The regional service resource name",
+          "type": "string"
+        },
+        "location": {
+          "description": "The location of regional service resource.",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the regional service.",
+          "type": "string"
+        }
       }
     }
+  },
+  "parameters": {
+    "accountNameParameter": {
+      "name": "accountName",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Cosmos DB database account name.",
+      "minLength": 3,
+      "maxLength": 50,
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*"
+    }
+  }
 }
