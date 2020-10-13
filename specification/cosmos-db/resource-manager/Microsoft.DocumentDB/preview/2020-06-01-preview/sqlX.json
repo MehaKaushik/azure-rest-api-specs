@@ -100,7 +100,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/SqlXCreateUpdateParameters"
+              "$ref": "#/definitions/ServiceResourceCreateUpdateParameters"
             },
             "description": "The sql accelerator service to create for the current database account."
           }
@@ -121,7 +121,7 @@
         },
         "x-ms-examples": {
           "CosmosDBServiceResourceCreate": {
-            "$ref": "./examples/CosmosDBSqlXCreate.json"
+            "$ref": "./examples/CosmosDBSqlAcceleratorCreate.json"
           }
         }
       },
@@ -161,7 +161,7 @@
         },
         "x-ms-examples": {
           "CosmosDBServiceResourceDelete": {
-            "$ref": "./examples/CosmosDBSqlXDelete.json"
+            "$ref": "./examples/CosmosDBSqlAcceleratorDelete.json"
           }
         }
       }
