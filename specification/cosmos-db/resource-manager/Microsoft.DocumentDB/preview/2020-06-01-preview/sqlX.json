@@ -166,7 +166,8 @@
           }
         }
       }
-    },
+    }
+  },
     "definitions": {
       "ServiceResourceCreateUpdateParameters": {
         "description": "Parameters to create a service resource",
@@ -222,23 +223,23 @@
             }
           }
         }
-      }
-    },
-    "RegionalServiceResource": {
-      "description": "Properties of a regional service resource.",
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "The regional service resource name",
-          "type": "string"
-        },
-        "location": {
-          "description": "The location of regional service resource.",
-          "type": "string"
-        },
-        "status": {
-          "description": "The status of the regional service.",
-          "type": "string"
+      },
+      "RegionalServiceResource": {
+        "description": "Properties of a regional service resource.",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The regional service resource name",
+            "type": "string"
+          },
+          "location": {
+            "description": "The location of regional service resource.",
+            "type": "string"
+          },
+          "status": {
+            "description": "The status of the regional service.",
+            "type": "string"
+          }
         }
       }
     },
@@ -255,5 +256,4 @@
         "pattern": "^[a-z0-9]+(-[a-z0-9]+)*"
       }
     }
-  }
 }
