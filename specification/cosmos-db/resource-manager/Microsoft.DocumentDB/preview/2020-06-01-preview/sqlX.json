@@ -1,0 +1,259 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Cosmos DB",
+    "description": "Azure Cosmos DB Database Service Resource Provider REST API",
+    "version": "2020-06-01-preview"
+  },
+  "host": "management.azure.com",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "security": [
+    {
+      "azure_auth": [
+        "user_impersonation"
+      ]
+    }
+  ],
+  "securityDefinitions": {
+    "azure_auth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+      "flow": "implicit",
+      "description": "Azure Active Directory OAuth2 Flow",
+      "scopes": {
+        "user_impersonation": "Impersonate your user account"
+      }
+    }
+  },
+  "paths": {
+    "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/services/sqlx": {
+      "get": {
+        "tags": [
+          "SqlAcceleratorService"
+        ],
+        "description": "Gets the sql accelerator service for a Cosmos DB account.",
+        "operationId": "SqlAccelerators_Get",
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/accountNameParameter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved sql accelerator service resource.",
+            "schema": {
+              "$ref": "#/definitions/ServiceResource"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "cosmos-db.json#/definitions/DefaultErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "CosmosDBSqlAcceleratorGet": {
+            "$ref": "./examples/CosmosDBSqlAcceleratorGet.json"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SqlAcceleratorService"
+        ],
+        "description": "Creates the sql accelerator service for a Cosmos DB account.",
+        "operationId": "SqlAccelerators_CreateOrUpdate",
+        "x-ms-long-running-operation": true,
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/accountNameParameter"
+          },
+          {
+            "name": "sqlXCreateUpdateParameters",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SqlXCreateUpdateParameters"
+            },
+            "description": "The sql accelerator service to create for the current database account."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Creation of sql accelerator service will complete asynchronously.",
+            "schema": {
+              "$ref": "#/definitions/ServiceResource"
+            }
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "cosmos-db.json#/definitions/DefaultErrorResponse"
+            }
+          }
+        },
+        "x-ms-examples": {
+          "CosmosDBServiceResourceCreate": {
+            "$ref": "./examples/CosmosDBSqlXCreate.json"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SqlAcceleratorService"
+        ],
+        "description": "Deletes the sql accelerator Service for a Cosmos DB account.",
+        "operationId": "SqlAccelerators_Delete",
+        "x-ms-long-running-operation": true,
+        "parameters": [
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/SubscriptionIdParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ResourceGroupNameParameter"
+          },
+          {
+            "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
+          },
+          {
+            "$ref": "#/parameters/accountNameParameter"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "The sqlX delete operation will complete asynchronously."
+          },
+          "204": {
+            "description": "SqlX service does not exist in the database account."
+          },
+          "default": {
+            "description": "Error response describing why the operation failed.",
+            "schema": {
+              "$ref": "cosmos-db.json#/definitions/DefaultErrorResponse"
+            }
+        },
+        "x-ms-examples": {
+          "CosmosDBServiceResourceDelete": {
+            "$ref": "./examples/CosmosDBSqlXDelete.json"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ServiceResourceCreateUpdateParameters": {
+      "description": "Parameters to create a service resource",
+      "type": "object",
+      "properties": {
+        "properties": {
+          "x-ms-client-flatten": true,
+          "description": "Properties to create and update an Azure Cosmos DB Service Resource.",
+          "$ref": "#/definitions/ServiceResource"
+        }
+      }
+    },
+    "ServiceResource": {
+      "description": "A CosmosDB Service resource",
+      "type": "object",
+      "properties": {
+        "properties": {
+          "$ref": "#/definitions/ServiceResourceProperties",
+          "description": "Resource properties.",
+          "x-ms-client-flatten": true
+        }
+      }
+    },
+    "ServiceResourceProperties": {
+      "description": "Properties of a service resource.",
+      "type": "object",
+      "properties": {
+        "serviceType": {
+          "description": "Specifies the type of Service.",
+          "type": "string",
+          "enum":[
+            "Sqlx"
+          ],
+          "readOnly": true
+        },
+        "status": {
+          "description": "Status of the CosmosDB Service.",
+          "type": "string"
+        },
+        "instanceSize": {
+          "description": "Size of the CosmosDB Service.",
+          "type": "string"
+        },
+        "instanceCount": {
+          "description": "Instance count of the CosmosDB Service.",
+          "type": "string"
+        },
+        "locations": {
+          "description": "Map of a location name to regional service resource.",
+          "type": "array",
+          "items":{
+          "$ref": "#/definitions/RegionalServiceResource"
+          }
+        }
+      }
+    }
+  },
+  "RegionalServiceResource": {
+    "description": "Properties of a regional service resource.",
+    "type": "object",
+    "properties": {
+      "name": {
+        "description": "The regional service resource name",
+        "type": "string"
+      },
+      "location": {
+        "description": "The location of regional service resource.",
+        "type": "string"      
+      },
+      "status": {
+        "description": "The status of the regional service.",
+        "type": "string"
+      }
+    }
+  },
+  "parameters": {
+    "accountNameParameter": {
+      "name": "accountName",
+      "in": "path",
+      "required": true,
+      "type": "string",
+      "x-ms-parameter-location": "method",
+      "description": "Cosmos DB database account name.",
+      "minLength": 3,
+      "maxLength": 50,
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*"
+    }
+  }
+}
+}
