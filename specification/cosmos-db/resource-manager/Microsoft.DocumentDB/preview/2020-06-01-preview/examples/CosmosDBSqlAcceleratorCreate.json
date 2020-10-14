@@ -4,10 +4,12 @@
     "subscriptionId": "subid",
     "resourceGroupName": "rg1",
     "accountName": "ddb1",
-    "properties": {
+    "createUpdateServiceResourceParameters": {
+      "properties":{
       "serviceType": "Sqlx",
       "instanceSize": "Cosmos.D4s",
       "instanceCount": "3"
+      }
     }
   },
   "responses": {

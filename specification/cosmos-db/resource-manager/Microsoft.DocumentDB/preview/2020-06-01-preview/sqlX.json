@@ -96,7 +96,7 @@
             "$ref": "#/parameters/accountNameParameter"
           },
           {
-            "name": "properties",
+            "name": "createUpdateServiceResourceParameters",
             "in": "body",
             "required": true,
             "schema": {
@@ -178,7 +178,10 @@
           "$ref": "#/definitions/ServiceResource",
           "x-ms-client-flatten": true
         }
-      }
+      },
+      "required": [
+        "properties"
+      ]
     },
     "ServiceGetResults": {
       "description": "An Azure Cosmos DB Cassandra table.",
@@ -200,8 +203,7 @@
           "type": "string",
           "enum": [
             "Sqlx"
-          ],
-          "readOnly": true
+          ]
         },
         "status": {
           "description": "Status of the CosmosDB Service.",
