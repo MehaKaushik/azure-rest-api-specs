@@ -37,10 +37,10 @@
     "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DocumentDB/databaseAccounts/{accountName}/services/sqlx": {
       "get": {
         "tags": [
-          "SqlAcceleratorService"
+          "SqlxService"
         ],
-        "description": "Gets the sql accelerator service for a Cosmos DB account.",
-        "operationId": "SqlAccelerators_Get",
+        "description": "Gets the sqlx service for a Cosmos DB account.",
+        "operationId": "Sqlx_Get",
         "parameters": [
           {
             "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/SubscriptionIdParameter"
@@ -57,7 +57,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Successfully retrieved sql accelerator service resource.",
+            "description": "Successfully retrieved sqlx service resource.",
             "schema": {
               "$ref": "#/definitions/ServiceGetResults"
             }
@@ -70,17 +70,17 @@
           }
         },
         "x-ms-examples": {
-          "CosmosDBSqlAcceleratorGet": {
-            "$ref": "./examples/CosmosDBSqlAcceleratorGet.json"
+          "CosmosDBServiceResourceGet": {
+            "$ref": "./examples/CosmosDBSqlxGet.json"
           }
         }
       },
       "put": {
         "tags": [
-          "SqlAcceleratorService"
+          "SqlxService"
         ],
-        "description": "Creates the sql accelerator service for a Cosmos DB account.",
-        "operationId": "SqlAccelerators_CreateOrUpdate",
+        "description": "Creates the sqlx service for a Cosmos DB account.",
+        "operationId": "Sqlx_CreateOrUpdate",
         "x-ms-long-running-operation": true,
         "parameters": [
           {
@@ -102,12 +102,12 @@
             "schema": {
               "$ref": "#/definitions/ServiceResourceCreateUpdateParameters"
             },
-            "description": "The sql accelerator service to create for the current database account."
+            "description": "The sqlx service to create for the current database account."
           }
         ],
         "responses": {
           "200": {
-            "description": "Creation of sql accelerator service will complete asynchronously.",
+            "description": "Creation of sqlx service will complete asynchronously.",
             "schema": {
               "$ref": "#/definitions/ServiceGetResults"
             }
@@ -121,16 +121,16 @@
         },
         "x-ms-examples": {
           "CosmosDBServiceResourceCreate": {
-            "$ref": "./examples/CosmosDBSqlAcceleratorCreate.json"
+            "$ref": "./examples/CosmosDBSqlxCreate.json"
           }
         }
       },
       "delete": {
         "tags": [
-          "SqlAcceleratorService"
+          "SqlxService"
         ],
-        "description": "Deletes the sql accelerator Service for a Cosmos DB account.",
-        "operationId": "SqlAccelerators_Delete",
+        "description": "Deletes the sqlx Service for a Cosmos DB account.",
+        "operationId": "Sqlx_Delete",
         "x-ms-long-running-operation": true,
         "parameters": [
           {
@@ -148,10 +148,10 @@
         ],
         "responses": {
           "202": {
-            "description": "The sqlX delete operation will complete asynchronously."
+            "description": "The sqlx delete operation will complete asynchronously."
           },
           "204": {
-            "description": "SqlX service does not exist in the database account."
+            "description": "Sqlx service does not exist in the database account."
           },
           "default": {
             "description": "Error response describing why the operation failed.",
@@ -161,7 +161,7 @@
           },
           "x-ms-examples": {
             "CosmosDBServiceResourceDelete": {
-              "$ref": "./examples/CosmosDBSqlAcceleratorDelete.json"
+              "$ref": "./examples/CosmosDBSqlxDelete.json"
             }
           }
         }
@@ -170,7 +170,7 @@
   },
   "definitions": {
     "ServiceResourceCreateUpdateParameters": {
-      "description": "Parameters to create a service resource",
+      "description": "Parameters to create a Service Resource",
       "type": "object",
       "properties": {
         "properties": {
@@ -184,18 +184,18 @@
       ]
     },
     "ServiceGetResults": {
-      "description": "An Azure Cosmos DB Cassandra table.",
+      "description": "An Azure Cosmos DB ServiceGetResults object.",
       "type": "object",
       "properties": {
         "properties": {
           "x-ms-client-flatten": true,
-          "description": "The properties of an Azure Cosmos DB Cassandra table",
+          "description": "The properties of a Service Resource",
           "$ref": "#/definitions/ServiceResource"
         }
       }
     },
     "ServiceResource": {
-      "description": "A CosmosDB Service resource",
+      "description": "An Azure CosmosDB Service Resource.",
       "type": "object",
       "properties": {
         "serviceType": {
@@ -206,19 +206,19 @@
           ]
         },
         "status": {
-          "description": "Status of the CosmosDB Service.",
+          "description": "Status of the Azure CosmosDB Service Resource.",
           "type": "string"
         },
         "instanceSize": {
-          "description": "Size of the CosmosDB Service.",
+          "description": "Size of the CosmosDB Service Resource.",
           "type": "string"
         },
         "instanceCount": {
-          "description": "Instance count of the CosmosDB Service.",
+          "description": "Instance count of the Service Resource.",
           "type": "string"
         },
         "locations": {
-          "description": "Map of a location name to regional service resource.",
+          "description": "Map of a location name to Regional Service Resource.",
           "type": "array",
           "items": {
             "$ref": "#/definitions/RegionalServiceResource"
@@ -227,15 +227,11 @@
       }
     },
     "RegionalServiceResource": {
-      "description": "Properties of a regional service resource.",
+      "description": "Properties of a Regional Service Resource.",
       "type": "object",
       "properties": {
-        "name": {
-          "description": "The regional service resource name",
-          "type": "string"
-        },
         "location": {
-          "description": "The location of regional service resource.",
+          "description": "The location of Regional Service Resource.",
           "type": "string"
         },
         "status": {

@@ -31,6 +31,9 @@ output-folder: $(azureresourceschema-folder)/schemas
 input-file:
   - Microsoft.DocumentDB/preview/2020-06-01-preview/cosmos-db.json
   - Microsoft.DocumentDB/preview/2020-06-01-preview/notebook.json
+  - Microsoft.DocumentDB/preview/2020-06-01-preview/rbac.json
+  - Microsoft.DocumentDB/preview/2020-06-01-preview/sqlx.json
+
 
 ```
 
