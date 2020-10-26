@@ -153,6 +153,9 @@
           "204": {
             "description": "Sqlx service does not exist in the database account."
           },
+          "200": {
+            "description": "Sqlx service delete was completed successfully."
+          },
           "default": {
             "description": "Error response describing why the operation failed.",
             "schema": {

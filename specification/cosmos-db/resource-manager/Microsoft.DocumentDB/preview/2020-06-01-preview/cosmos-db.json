@@ -116,6 +116,9 @@
           "CosmosDBDatabaseAccountCreateMax": {
             "$ref": "./examples/CosmosDBDatabaseAccountCreateMax.json"
           },
+          "CosmosDBDatabaseAccountCreateWithGremlinV2Service":{
+            "$ref": "./examples/CosmosDBDatabaseAccountCreateWithGremlinV2Service.json"
+          },
           "CosmosDBRestoreDatabaseAccountCreateUpdate.json": {
             "$ref": "./examples/CosmosDBRestoreDatabaseAccountCreateUpdate.json"
           }
@@ -5355,8 +5358,7 @@
           "type": "boolean"
         },
         "apiProperties": {
-          "description": "API specific properties.",
-          "type": "object",
+          "description": "API specific properties. Currently, supported only for MongoDB API and GremlinV2 ComputeV2 Service.",
           "$ref": "#/definitions/ApiProperties"
         },
         "enableAnalyticalStorage": {
@@ -5468,8 +5470,7 @@
           "type": "boolean"
         },
         "apiProperties": {
-          "description": "API specific properties. Currently, supported only for MongoDB API.",
-          "type": "object",
+          "description": "API specific properties. Currently, supported only for MongoDB API and GremlinV2 ComputeV2 Service.",
           "$ref": "#/definitions/ApiProperties"
         },
         "enableAnalyticalStorage": {
@@ -5627,8 +5628,7 @@
           "type": "boolean"
         },
         "apiProperties": {
-          "description": "API specific properties. Currently, supported only for MongoDB API.",
-          "type": "object",
+          "description": "API specific properties. Currently, supported only for MongoDB API and GremlinV2 ComputeV2 Service.",
           "$ref": "#/definitions/ApiProperties"
         },
         "enableAnalyticalStorage": {
@@ -7636,6 +7636,21 @@
       }
     },
     "ApiProperties": {
+      "description": "API specific properties. Currently, supported only for MongoDB API and GremlinV2 ComputeV2 Service.",
+      "type": "object",
+      "properties":{
+        "x-ms-client-flatten": true,
+        "oneOf":[
+          {
+            "$ref": "#/definitions/MongoDBProperties"
+          },
+          {
+            "$ref": "#/definitions/GremlinV2Properties"
+          }
+        ]
+      }
+    },
+    "MongoDBProperties": {
       "type": "object",
       "properties": {
         "serverVersion": {
@@ -7649,6 +7664,19 @@
             "modelAsString": true,
             "name": "ServerVersion"
           }
+        }
+      }
+    },
+    "GremlinV2Properties":{
+      "type": "object",
+      "properties":{
+        "clusterSize":{
+          "type": "string",
+          "description": "Describes the Cluster Size."
+        },
+        "clusterInstanceCount":{
+          "type": "integer",
+          "description": "Instance count of the GremlinV2 Clusters."
         }
       }
     },
