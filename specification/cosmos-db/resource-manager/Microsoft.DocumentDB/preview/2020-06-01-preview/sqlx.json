@@ -158,11 +158,11 @@
             "schema": {
               "$ref": "cosmos-db.json#/definitions/DefaultErrorResponse"
             }
-          },
-          "x-ms-examples": {
-            "CosmosDBServiceResourceDelete": {
-              "$ref": "./examples/CosmosDBSqlxDelete.json"
-            }
+          }
+        },
+        "x-ms-examples": {
+          "CosmosDBServiceResourceDelete": {
+            "$ref": "./examples/CosmosDBSqlxDelete.json"
           }
         }
       }
