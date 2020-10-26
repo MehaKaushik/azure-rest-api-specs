@@ -52,7 +52,7 @@
             "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
           },
           {
-            "$ref": "#/parameters/accountNameParameter"
+            "$ref": "cosmos-db.json#/parameters/accountNameParameter"
           }
         ],
         "responses": {
@@ -93,7 +93,7 @@
             "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
           },
           {
-            "$ref": "#/parameters/accountNameParameter"
+            "$ref": "cosmos-db.json#/parameters/accountNameParameter"
           },
           {
             "name": "createUpdateServiceResourceParameters",
@@ -143,7 +143,7 @@
             "$ref": "../../../../../common-types/resource-management/v1/types.json#/parameters/ApiVersionParameter"
           },
           {
-            "$ref": "#/parameters/accountNameParameter"
+            "$ref": "cosmos-db.json#/parameters/accountNameParameter"
           }
         ],
         "responses": {
